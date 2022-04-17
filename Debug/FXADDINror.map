@@ -1,0 +1,445 @@
+Hitachi Optimizing Linkage Editor (Ver. 7.1.03.000)17-Apr-2022 01:12:36
+
+*** Options ***
+
+-subcommand=C:\Users\NATHAN~1\AppData\Local\Temp\hmk9830.tmp
+noprelink
+sdebug
+rom D=R
+nomessage
+list "E:\Code\BVF\bvf_play\Debug\FXADDINror.map"
+show symbol
+nooptimize
+start P_TOP,P,C,D,C$VTBL,C$INIT/0300200,B_BR_Size,B,R/08100000
+fsymbol P
+nologo
+input "E:\Code\BVF\bvf_play\Debug\bvfplay.obj"
+input "D:\Programs\fx-9860G SDK\OS\FX\lib\setup.obj"
+library "D:\Programs\fx-9860G SDK\OS\FX\lib\fx9860G_library.lib"
+output "E:\Code\BVF\bvf_play\Debug\FXADDINror.abs"
+-nomessage=1100
+end
+
+*** Error information ***
+
+*** Mapping List ***
+
+SECTION                            START      END         SIZE   ALIGN
+
+P_TOP
+                                  00300200  0030020b         c   4
+P
+                                  0030020c  00300f0f       d04   4
+C
+                                  00300f10  00300f47        38   4
+D
+                                  00300f48  00300fdf        98   4
+B_BR_Size
+                                  08100000  08100003         4   4
+B
+                                  08100004  0810043b       438   4
+R
+                                  0810043c  081004d3        98   4
+
+*** Symbol List ***
+
+SECTION=
+FILE=                               START        END    SIZE
+  SYMBOL                            ADDR        SIZE    INFO      COUNTS  OPT
+
+SECTION=P_TOP
+FILE=E:\Code\BVF\bvf_play\Debug\bvfplay.obj
+                                  00300200  0030020b         c
+  _InitializeSystem
+                                  00300200         c   func ,g         * 
+
+SECTION=P
+FILE=E:\Code\BVF\bvf_play\Debug\bvfplay.obj
+                                  0030020c  003003ab       1a0
+  _AddIn_main
+                                  0030020c       1a0   func ,g         * 
+FILE=D:\Programs\fx-9860G SDK\OS\FX\lib\setup.obj
+                                  003003ac  003004c7       11c
+  ___LINK_PROTECT
+                                  003003ac         4   func ,g         * 
+  _SetQuitHandler
+                                  003003b0         6   func ,g         * 
+  _OnAppCloseDefault
+                                  003003b6        54   func ,g         * 
+  __INITSCT_ADDIN
+                                  0030040a        48   func ,g         * 
+  _INIT_ADDIN_APPLICATION
+                                  00300452        76   func ,g         * 
+FILE=__divlu
+                                  003004c8  0030056f        a8
+  __divlu
+                                  003004c8         0   none ,g         * 
+  divlu_zero
+                                  0030055a         0   none ,l         * 
+  A_errno
+                                  00300568         0   none ,l         * 
+  n_zerono
+                                  0030056c         0   none ,l         * 
+FILE=memset
+                                  00300570  00300587        18
+  _memset
+                                  00300570        18   func ,g         * 
+FILE=_Bdel_cychdr
+                                  00300588  00300597        10
+  _Bdel_cychdr
+                                  00300588         0   none ,g         * 
+FILE=_Bdisp_AllClr_DDVRAM
+                                  00300598  003005a7        10
+  _Bdisp_AllClr_DDVRAM
+                                  00300598         0   none ,g         * 
+FILE=_Bdisp_AllClr_VRAM
+                                  003005a8  003005b7        10
+  _Bdisp_AllClr_VRAM
+                                  003005a8         0   none ,g         * 
+FILE=_Bdisp_PutDisp_DD
+                                  003005b8  003005c7        10
+  _Bdisp_PutDisp_DD
+                                  003005b8         0   none ,g         * 
+FILE=_Bdisp_PutLineVRAM
+                                  003005c8  003005d7        10
+  _Bdisp_DrawLineVRAM
+                                  003005c8         0   none ,g         * 
+FILE=_BfileFLS_CloseFile
+                                  003005d8  003005e7        10
+  _BfileFLS_CloseFile
+                                  003005d8         0   none ,g         * 
+FILE=_Bkey_Set_RepeatTime_Default
+                                  003005e8  003005f7        10
+  _Bkey_Set_RepeatTime_Default
+                                  003005e8         0   none ,g         * 
+FILE=_CallbackAtQuitMainFunction
+                                  003005f8  00300607        10
+  _CallbackAtQuitMainFunction
+                                  003005f8         0   none ,g         * 
+FILE=_flsFindClose
+                                  00300608  00300617        10
+  _flsFindClose
+                                  00300608         0   none ,g         * 
+FILE=_free
+                                  00300618  00300627        10
+  _free
+                                  00300618         0   none ,g         * 
+FILE=_getkey
+                                  00300628  00300637        10
+  _GetKey
+                                  00300628         0   none ,g         * 
+FILE=_GLibAddinAplExecutionCheck
+                                  00300638  00300647        10
+  _GLibAddinAplExecutionCheck
+                                  00300638         0   none ,g         * 
+FILE=_Hmem_SetMMU
+                                  00300648  00300657        10
+  _Hmem_SetMMU
+                                  00300648         0   none ,g         * 
+FILE=filebios
+                                  00300658  00300d87       730
+  _BfileMCS_GetFileHandle
+                                  00300658        6e   func ,g         * 
+  _Bfile_CloseFile
+                                  003006c6        6e   func ,g         * 
+  _BfileMCS_HandleCheck
+                                  00300734        40   func ,g         * 
+  _MCSFile_InitAll
+                                  00300774        3c   func ,g         * 
+  _Bfile_ReadFile
+                                  003007b0        e8   func ,g         * 
+  _Bfile_WriteFile
+                                  00300898        de   func ,g         * 
+  _Bfile_SeekFile
+                                  00300976        6a   func ,g         * 
+  _Bfile_OpenMainMemory
+                                  003009e0        42   func ,g         * 
+  _Bfile_OpenFile
+                                  00300a22         6   func ,g         * 
+  _Bfile_GetMediaFree
+                                  00300a28        cc   func ,g         * 
+  _Bfile_GetFileSize
+                                  00300af4        7a   func ,g         * 
+  _Bfile_CreateMainMemory
+                                  00300b6e        84   func ,g         * 
+  _Bfile_CreateFile
+                                  00300bf2        16   func ,g         * 
+  _Bfile_CreateDirectory
+                                  00300c08         8   func ,g         * 
+  _Bfile_RenameMainMemory
+                                  00300c10        6a   func ,g         * 
+  _Bfile_DeleteMainMemory
+                                  00300c7a        6a   func ,g         * 
+  _Bfile_DeleteFile
+                                  00300ce4        40   func ,g         * 
+  _Bfile_DeleteDirectory
+                                  00300d24        64   func ,g         * 
+FILE=__s_mvn
+                                  00300d88  00300dbf        38
+  __slow_mvn
+                                  00300d88         0   none ,g         * 
+  SMVN_B
+                                  00300d96         0   none ,l         * 
+  SMVN_END
+                                  00300db8         0   none ,l         * 
+FILE=strncmp
+                                  00300dc0  00300dfd        3e
+  _strncmp
+                                  00300dc0        3e   func ,g         * 
+FILE=_Bfile_CloseFile
+                                  00300e00  00300e0f        10
+  _Bfile_CloseFile_OS
+                                  00300e00         0   none ,g         * 
+FILE=_Bfile_CreateEntry
+                                  00300e10  00300e1f        10
+  _Bfile_CreateEntry
+                                  00300e10         0   none ,g         * 
+FILE=_Bfile_DeleteEntry
+                                  00300e20  00300e2f        10
+  _Bfile_DeleteEntry
+                                  00300e20         0   none ,g         * 
+FILE=_Bfile_GetFileSize
+                                  00300e30  00300e3f        10
+  _Bfile_GetFileSize_OS
+                                  00300e30         0   none ,g         * 
+FILE=_Bfile_GetMediaFree
+                                  00300e40  00300e4f        10
+  _Bfile_GetMediaFree_OS
+                                  00300e40         0   none ,g         * 
+FILE=_Bfile_OpenFile
+                                  00300e50  00300e5f        10
+  _Bfile_OpenFile_OS
+                                  00300e50         0   none ,g         * 
+FILE=_Bfile_ReadFile
+                                  00300e60  00300e6f        10
+  _Bfile_ReadFile_OS
+                                  00300e60         0   none ,g         * 
+FILE=_Bfile_SeekFile
+                                  00300e70  00300e7f        10
+  _Bfile_SeekFile_OS
+                                  00300e70         0   none ,g         * 
+FILE=_Bfile_WriteFile
+                                  00300e80  00300e8f        10
+  _Bfile_WriteFile_OS
+                                  00300e80         0   none ,g         * 
+FILE=_BMCSRenameVariable
+                                  00300e90  00300e9f        10
+  _BMCSRenameVariable
+                                  00300e90         0   none ,g         * 
+FILE=_GetAppName
+                                  00300ea0  00300eaf        10
+  _GetAppName
+                                  00300ea0         0   none ,g         * 
+FILE=_MCSDelVar2
+                                  00300eb0  00300ebf        10
+  _MCSDelVar2
+                                  00300eb0         0   none ,g         * 
+FILE=_MCSGetCapa
+                                  00300ec0  00300ecf        10
+  _MCSGetCapa
+                                  00300ec0         0   none ,g         * 
+FILE=_MCSGetData1
+                                  00300ed0  00300edf        10
+  _MCSGetData1
+                                  00300ed0         0   none ,g         * 
+FILE=_MCSGetDlen2
+                                  00300ee0  00300eef        10
+  _MCSGetDlen2
+                                  00300ee0         0   none ,g         * 
+FILE=_MCSOvwDat2
+                                  00300ef0  00300eff        10
+  _MCSOvwDat2
+                                  00300ef0         0   none ,g         * 
+FILE=_MCSPutVar2
+                                  00300f00  00300f0f        10
+  _MCSPutVar2
+                                  00300f00         0   none ,g         * 
+
+SECTION=C
+FILE=addin_sct
+                                  00300f10  00300f23        14
+  _B_BGN
+                                  00300f10         0   none ,g         * 
+  _B_END
+                                  00300f14         0   none ,g         * 
+  _R_BGN
+                                  00300f18         0   none ,g         * 
+  _R_END
+                                  00300f1c         0   none ,g         * 
+  _D_ROM
+                                  00300f20         0   none ,g         * 
+
+SECTION=B_BR_Size
+FILE=E:\Code\BVF\bvf_play\Debug\bvfplay.obj
+                                  08100000  08100003         4
+  _BR_Size
+                                  08100000         4   data ,g         * 
+
+SECTION=B
+FILE=E:\Code\BVF\bvf_play\Debug\bvfplay.obj
+                                  08100004  08100437       434
+  _key
+                                  08100004         4   data ,g         * 
+  _file
+                                  08100008         4   data ,g         * 
+  _md_buf
+                                  0810000c         7   data ,g         * 
+  _byte
+                                  08100013         1   data ,g         * 
+  _vec_buf
+                                  08100014       3fc   data ,g         * 
+  _bytes_read
+                                  08100410         4   data ,g         * 
+  _m_frame_rate
+                                  08100414         4   data ,g         * 
+  _m_frame_count
+                                  08100418         4   data ,g         * 
+  _m_horizontal_resolution
+                                  0810041c         4   data ,g         * 
+  _m_vertical_resolution
+                                  08100420         4   data ,g         * 
+  _start
+                                  08100424         4   data ,g         * 
+  _end
+                                  08100428         4   data ,g         * 
+  _num_vectors
+                                  0810042c         4   data ,g         * 
+  _i
+                                  08100430         4   data ,g         * 
+  _frame_delay
+                                  08100434         4   data ,g         * 
+FILE=_errno
+                                  08100438  0810043b         4
+  __errno
+                                  08100438         4   data ,g         * 
+
+SECTION=R
+FILE=E:\Code\BVF\bvf_play\Debug\bvfplay.obj
+                                  0810043c  0810046b        30
+  _filename
+                                  0810043c        24   data ,g         * 
+  _line_index
+                                  08100460         4   data ,g         * 
+  _frame_index
+                                  08100464         4   data ,g         * 
+  _frame_vector_count
+                                  08100468         4   data ,g         * 
+FILE=D:\Programs\fx-9860G SDK\OS\FX\lib\setup.obj
+                                  0810046c  0810046f         4
+  _gb_OnAppClose
+                                  0810046c         4   data ,g         * 
+FILE=filebios
+                                  08100470  081004d3        64
+  _MCSpt
+                                  08100470        64   data ,g         * 
+
+Absolute value symbols
+FILE=__divlu
+  zerodiv
+                                  0000044e         0   none ,l         * 
+FILE=_Bdel_cychdr
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bdisp_AllClr_DDVRAM
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bdisp_AllClr_VRAM
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bdisp_PutDisp_DD
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bdisp_PutLineVRAM
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_BfileFLS_CloseFile
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bkey_Set_RepeatTime_Default
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_CallbackAtQuitMainFunction
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_flsFindClose
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_free
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_getkey
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_GLibAddinAplExecutionCheck
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Hmem_SetMMU
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bfile_CloseFile
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bfile_CreateEntry
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bfile_DeleteEntry
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bfile_GetFileSize
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bfile_GetMediaFree
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bfile_OpenFile
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bfile_ReadFile
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bfile_SeekFile
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bfile_WriteFile
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_BMCSRenameVariable
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_GetAppName
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_MCSDelVar2
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_MCSGetCapa
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_MCSGetData1
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_MCSGetDlen2
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_MCSOvwDat2
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_MCSPutVar2
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+
+*** Delete Symbols ***
+
+SYMBOL                                SIZE    INFO
+
+*** Variable Accessible with Abs8 ***
+
+SYMBOL                                SIZE    COUNTS  OPTIMIZE
+
+*** Variable Accessible with Abs16 ***
+
+SYMBOL                                SIZE    COUNTS  OPTIMIZE
+
+*** Function Call ***
+
+SYMBOL                              COUNTS  OPTIMIZE

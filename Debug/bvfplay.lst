@@ -1,0 +1,533 @@
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    1
+
+************ OBJECT LISTING ************
+
+FILE NAME: E:\Code\BVF\bvf_play\bvfplay.c
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+       bvfplay.c     1    /*****************************************************************/
+       bvfplay.c     2    /*                                                               */
+       bvfplay.c     3    /*   CASIO fx-9860G SDK Library                                  */
+       bvfplay.c     4    /*                                                               */
+       bvfplay.c     5    /*   File name : [ProjectName].c                                 */
+       bvfplay.c     6    /*                                                               */
+       bvfplay.c     7    /*   Copyright (c) 2006 CASIO COMPUTER CO., LTD.                 */
+       bvfplay.c     8    /*                                                               */
+       bvfplay.c     9    /*****************************************************************/
+       bvfplay.c    10    #include "fxlib.h"
+       bvfplay.c    11    
+       bvfplay.c    12    
+       bvfplay.c    13    //****************************************************************************
+       bvfplay.c    14    //  AddIn_main (Sample program main function)
+       bvfplay.c    15    //
+       bvfplay.c    16    //  param   :   isAppli   : 1 = This application is launched by MAIN MENU.
+       bvfplay.c    17    //                        : 0 = This application is launched by a strip in eACT application.
+       bvfplay.c    18    //
+       bvfplay.c    19    //              OptionNum : Strip number (0~3)
+       bvfplay.c    20    //                         (This parameter is only used when isAppli parameter is 0.)
+       bvfplay.c    21    //
+       bvfplay.c    22    //  retval  :   1 = No error / 0 = Error
+       bvfplay.c    23    //
+       bvfplay.c    24    //****************************************************************************
+       bvfplay.c    25    FONTCHARACTER filename[] = {'\\','\\','c','r','d','0','\\','o','u','t','p','u','t','.','b','v','f',0}; // 
+                         +Filename SET TO FLS FOR PROD
+       bvfplay.c    26    
+       bvfplay.c    27    unsigned int key; // Keypad key pressed
+       bvfplay.c    28    
+       bvfplay.c    29    // ------- FILE OPS -------
+       bvfplay.c    30    int file; // File handle
+       bvfplay.c    31    unsigned char md_buf[7]; // Buffer to read first bytes of file to
+       bvfplay.c    32    unsigned char byte;
+       bvfplay.c    33    unsigned char vec_buf[1020];
+       bvfplay.c    34    int bytes_read; // Number of bytes read from file
+       bvfplay.c    35    
+       bvfplay.c    36    // ------- FILE INFO -------
+       bvfplay.c    37    // METADATA
+       bvfplay.c    38    unsigned int m_frame_rate;
+       bvfplay.c    39    unsigned int m_frame_count;
+       bvfplay.c    40    unsigned int m_horizontal_resolution;
+       bvfplay.c    41    unsigned int m_vertical_resolution;
+       bvfplay.c    42    
+       bvfplay.c    43    // RUNNING
+       bvfplay.c    44    unsigned int line_index = 0;
+       bvfplay.c    45    unsigned int frame_index = 0;
+       bvfplay.c    46    unsigned int start;
+       bvfplay.c    47    unsigned int end;
+       bvfplay.c    48    unsigned int num_vectors;
+       bvfplay.c    49    
+       bvfplay.c    50    unsigned int frame_vector_count = 0;
+       bvfplay.c    51    
+       bvfplay.c    52    unsigned int i;
+       bvfplay.c    53    
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    2
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+       bvfplay.c    54    unsigned int frame_delay;
+       bvfplay.c    55    
+       bvfplay.c    56    int AddIn_main(int isAppli, unsigned short OptionNum)
+P   00000000              _AddIn_main:                     ; function: AddIn_main
+                                                           ; frame size=8
+                                                           ; used runtime library name:
+                                                           ; __divlu
+       bvfplay.c    57    {
+       bvfplay.c    58        Bdisp_AllClr_DDVRAM();
+    00000000 D33A                   MOV.L       L342+6,R3  ; _Bdisp_AllClr_DDVRAM
+    00000002 7FF8                   ADD         #-8,R15
+    00000004 430B                   JSR         @R3
+    00000006 0009                   NOP
+       bvfplay.c    59    
+       bvfplay.c    60        file = Bfile_OpenFile(filename, _OPENMODE_READ);
+    00000008 D839                   MOV.L       L342+10,R8 ; _file
+    0000000A D43A                   MOV.L       L342+14,R4 ; _filename
+    0000000C D23A                   MOV.L       L342+18,R2 ; _Bfile_OpenFile
+    0000000E 420B                   JSR         @R2
+    00000010 E501                   MOV         #1,R5
+       bvfplay.c    61        
+       bvfplay.c    62        bytes_read = Bfile_ReadFile(file, &md_buf, 7, -1);
+    00000012 E7FF                   MOV         #-1,R7
+    00000014 D53A                   MOV.L       L342+26,R5 ; _md_buf
+    00000016 E607                   MOV         #7,R6
+    00000018 D33A                   MOV.L       L342+30,R3 ; _Bfile_ReadFile
+    0000001A 2802                   MOV.L       R0,@R8
+    0000001C DA37                   MOV.L       L342+22,R10; _bytes_read
+    0000001E 430B                   JSR         @R3
+    00000020 6403                   MOV         R0,R4
+    00000022 2A02                   MOV.L       R0,@R10
+       bvfplay.c    63        
+       bvfplay.c    64        m_frame_rate = (int)md_buf[0];
+    00000024 DE36                   MOV.L       L342+26,R14; _md_buf
+    00000026 62E0                   MOV.B       @R14,R2
+    00000028 D337                   MOV.L       L342+34,R3 ; _m_frame_rate
+    0000002A 622C                   EXTU.B      R2,R2
+    0000002C 2322                   MOV.L       R2,@R3
+       bvfplay.c    65        m_frame_count = (int)(md_buf[4] << 24 | md_buf[3] << 16 | md_buf[2] << 8 | md_buf[1]);
+    0000002E 84E4                   MOV.B       @(4,R14),R0
+       bvfplay.c    66        m_horizontal_resolution = (int)md_buf[5];
+    00000030 D337                   MOV.L       L342+42,R3 ; _m_horizontal_resolution
+    00000032 600C                   EXTU.B      R0,R0
+       bvfplay.c    67        m_vertical_resolution = (int)md_buf[6];
+    00000034 D237                   MOV.L       L342+46,R2 ; _m_vertical_resolution
+    00000036 4028                   SHLL16      R0
+    00000038 4018                   SHLL8       R0
+    0000003A 6103                   MOV         R0,R1
+    0000003C 84E3                   MOV.B       @(3,R14),R0
+    0000003E 600C                   EXTU.B      R0,R0
+    00000040 4028                   SHLL16      R0
+    00000042 210B                   OR          R0,R1
+    00000044 84E2                   MOV.B       @(2,R14),R0
+    00000046 600C                   EXTU.B      R0,R0
+    00000048 4018                   SHLL8       R0
+    0000004A 210B                   OR          R0,R1
+    0000004C 84E1                   MOV.B       @(1,R14),R0
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    3
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000004E 600C                   EXTU.B      R0,R0
+    00000050 210B                   OR          R0,R1
+    00000052 D02E                   MOV.L       L342+38,R0 ; _m_frame_count
+    00000054 2012                   MOV.L       R1,@R0
+    00000056 84E5                   MOV.B       @(5,R14),R0
+    00000058 600C                   EXTU.B      R0,R0
+    0000005A 2302                   MOV.L       R0,@R3
+    0000005C 84E6                   MOV.B       @(6,R14),R0
+    0000005E 600C                   EXTU.B      R0,R0
+    00000060 2202                   MOV.L       R0,@R2
+       bvfplay.c    68        free(md_buf);
+    00000062 D32D                   MOV.L       L342+50,R3 ; _free
+    00000064 430B                   JSR         @R3
+    00000066 64E3                   MOV         R14,R4
+       bvfplay.c    69    
+       bvfplay.c    70        frame_delay = 1000 / m_frame_rate;
+    00000068 913D                   MOV.W       L342,R1    ; H'03E8
+    0000006A D327                   MOV.L       L342+34,R3 ; _m_frame_rate
+    0000006C D22B                   MOV.L       L342+54,R2 ; __divlu
+    0000006E 420B                   JSR         @R2
+    00000070 6032                   MOV.L       @R3,R0
+    00000072 EB00                   MOV         #0,R11
+    00000074 DC2C                   MOV.L       L342+66,R12; _num_vectors
+    00000076 D12A                   MOV.L       L342+58,R1 ; _frame_delay
+    00000078 D92A                   MOV.L       L342+62,R9 ; _frame_vector_count
+    0000007A 2102                   MOV.L       R0,@R1
+    0000007C DD2B                   MOV.L       L342+70,R13; _i
+    0000007E DE2C                   MOV.L       L342+74,R14; _line_index
+    00000080 D32C                   MOV.L       L342+78,R3 ; _vec_buf
+       bvfplay.c    71    
+       bvfplay.c    72        while (bytes_read) {
+    00000082 A07B                   BRA         L332
+    00000084 1F31                   MOV.L       R3,@(4,R15)
+    00000086              L333:                             
+       bvfplay.c    73            if (line_index == m_vertical_resolution) {
+    00000086 D323                   MOV.L       L342+46,R3 ; _m_vertical_resolution
+    00000088 62E2                   MOV.L       @R14,R2
+    0000008A 6132                   MOV.L       @R3,R1
+    0000008C 3210                   CMP/EQ      R1,R2
+    0000008E 8B0A                   BF          L334
+       bvfplay.c    74                frame_index++;
+    00000090 D229                   MOV.L       L342+82,R2 ; _frame_index
+    00000092 6022                   MOV.L       @R2,R0
+       bvfplay.c    75                Bdisp_PutDisp_DD();
+    00000094 D329                   MOV.L       L342+86,R3 ; _Bdisp_PutDisp_DD
+    00000096 7001                   ADD         #1,R0
+    00000098 430B                   JSR         @R3
+    0000009A 2202                   MOV.L       R0,@R2
+       bvfplay.c    76                //Sleep(frame_delay - frame_vector_count);
+       bvfplay.c    77                Bdisp_AllClr_VRAM();
+    0000009C D228                   MOV.L       L342+90,R2 ; _Bdisp_AllClr_VRAM
+    0000009E 420B                   JSR         @R2
+    000000A0 0009                   NOP
+       bvfplay.c    78                line_index = 0;
+    000000A2 2EB2                   MOV.L       R11,@R14
+       bvfplay.c    79                frame_vector_count = 0;
+    000000A4 29B2                   MOV.L       R11,@R9
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    4
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000000A6              L334:                             
+       bvfplay.c    80            //GetKey(&key);
+       bvfplay.c    81            }
+       bvfplay.c    82            memset(vec_buf, 0, sizeof vec_buf);
+    000000A6 961F                   MOV.W       L342+2,R6  ; H'03FC
+    000000A8 D422                   MOV.L       L342+78,R4 ; _vec_buf
+    000000AA D326                   MOV.L       L342+94,R3 ; _memset
+    000000AC 430B                   JSR         @R3
+    000000AE E500                   MOV         #0,R5
+       bvfplay.c    83            bytes_read = Bfile_ReadFile(file, &byte, 1, -1);
+    000000B0 D525                   MOV.L       L342+98,R5 ; _byte
+    000000B2 E7FF                   MOV         #-1,R7
+    000000B4 D213                   MOV.L       L342+30,R2 ; _Bfile_ReadFile
+    000000B6 E601                   MOV         #1,R6
+    000000B8 420B                   JSR         @R2
+    000000BA 6482                   MOV.L       @R8,R4
+    000000BC 2A02                   MOV.L       R0,@R10
+       bvfplay.c    84            num_vectors = (int)byte;
+    000000BE D222                   MOV.L       L342+98,R2 ; _byte
+    000000C0 6320                   MOV.B       @R2,R3
+    000000C2 633C                   EXTU.B      R3,R3
+    000000C4 2C32                   MOV.L       R3,@R12
+       bvfplay.c    85            frame_vector_count += num_vectors;
+    000000C6 6192                   MOV.L       @R9,R1
+    000000C8 313C                   ADD         R3,R1
+    000000CA 2912                   MOV.L       R1,@R9
+       bvfplay.c    86            if (num_vectors != 0) {
+    000000CC 60C2                   MOV.L       @R12,R0
+    000000CE 2008                   TST         R0,R0
+    000000D0 8907                   BT          L335
+       bvfplay.c    87                bytes_read = Bfile_ReadFile(file, &vec_buf, num_vectors*2, -1);
+    000000D2 E7FF                   MOV         #-1,R7
+    000000D4 66C2                   MOV.L       @R12,R6
+    000000D6 4600                   SHLL        R6
+    000000D8 55F1                   MOV.L       @(4,R15),R5
+    000000DA D30A                   MOV.L       L342+30,R3 ; _Bfile_ReadFile
+    000000DC 430B                   JSR         @R3
+    000000DE 6482                   MOV.L       @R8,R4
+    000000E0 2A02                   MOV.L       R0,@R10
+    000000E2              L335:                             
+       bvfplay.c    88            }
+       bvfplay.c    89            for (i=0; i < num_vectors*2; i+=2) {
+    000000E2 A043                   BRA         L336
+    000000E4 2DB2                   MOV.L       R11,@R13
+    000000E6              L342:                             
+    000000E6 03E8                   .DATA.W     H'03E8
+    000000E8 03FC                   .DATA.W     H'03FC
+    000000EA 0000                   .DATA.W     0
+    000000EC <00000000>             .DATA.L     _Bdisp_AllClr_DDVRAM
+    000000F0 <00000000>             .DATA.L     _file
+    000000F4 <00000000>             .DATA.L     _filename
+    000000F8 <00000000>             .DATA.L     _Bfile_OpenFile
+    000000FC <00000000>             .DATA.L     _bytes_read
+    00000100 <00000000>             .DATA.L     _md_buf
+    00000104 <00000000>             .DATA.L     _Bfile_ReadFile
+    00000108 <00000000>             .DATA.L     _m_frame_rate
+    0000010C <00000000>             .DATA.L     _m_frame_count
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    5
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000110 <00000000>             .DATA.L     _m_horizontal_resolution
+    00000114 <00000000>             .DATA.L     _m_vertical_resolution
+    00000118 <00000000>             .DATA.L     _free
+    0000011C <00000000>             .DATA.L     __divlu
+    00000120 <00000000>             .DATA.L     _frame_delay
+    00000124 <00000000>             .DATA.L     _frame_vector_count
+    00000128 <00000000>             .DATA.L     _num_vectors
+    0000012C <00000000>             .DATA.L     _i
+    00000130 <00000000>             .DATA.L     _line_index
+    00000134 <00000000>             .DATA.L     _vec_buf
+    00000138 <00000000>             .DATA.L     _frame_index
+    0000013C <00000000>             .DATA.L     _Bdisp_PutDisp_DD
+    00000140 <00000000>             .DATA.L     _Bdisp_AllClr_VRAM
+    00000144 <00000000>             .DATA.L     _memset
+    00000148 <00000000>             .DATA.L     _byte
+    0000014C              L337:                             
+       bvfplay.c    90                Bdisp_DrawLineVRAM(vec_buf[i], line_index, vec_buf[i+1], line_index);
+    0000014C 67E2                   MOV.L       @R14,R7
+    0000014E 63D2                   MOV.L       @R13,R3
+    00000150 D60F                   MOV.L       L343+2,R6  ; _vec_buf
+    00000152 363C                   ADD         R3,R6
+    00000154 2F62                   MOV.L       R6,@R15
+    00000156 8461                   MOV.B       @(1,R6),R0
+    00000158 65E2                   MOV.L       @R14,R5
+    0000015A 660C                   EXTU.B      R0,R6
+    0000015C 64F2                   MOV.L       @R15,R4
+    0000015E 6440                   MOV.B       @R4,R4
+    00000160 D30C                   MOV.L       L343+6,R3  ; _Bdisp_DrawLineVRAM
+    00000162 430B                   JSR         @R3
+    00000164 644C                   EXTU.B      R4,R4
+    00000166 62D2                   MOV.L       @R13,R2
+    00000168 7202                   ADD         #2,R2
+    0000016A 2D22                   MOV.L       R2,@R13
+    0000016C              L336:                             
+    0000016C 63C2                   MOV.L       @R12,R3
+    0000016E 4300                   SHLL        R3
+    00000170 62D2                   MOV.L       @R13,R2
+    00000172 3232                   CMP/HS      R3,R2
+    00000174 8BEA                   BF          L337
+       bvfplay.c    91            }
+       bvfplay.c    92            line_index++;
+    00000176 61E2                   MOV.L       @R14,R1
+    00000178 7101                   ADD         #1,R1
+    0000017A 2E12                   MOV.L       R1,@R14
+    0000017C              L332:                             
+    0000017C 63A2                   MOV.L       @R10,R3
+    0000017E 2338                   TST         R3,R3
+    00000180 8B81                   BF          L333
+    00000182 DE05                   MOV.L       L343+10,R14; _GetKey
+       bvfplay.c    93        }
+       bvfplay.c    94    
+       bvfplay.c    95        while(1){
+    00000184              L339:                             
+       bvfplay.c    96            GetKey(&key);
+    00000184 D405                   MOV.L       L343+14,R4 ; _key
+    00000186 4E0B                   JSR         @R14
+    00000188 0009                   NOP
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    6
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000018A AFFB                   BRA         L339
+    0000018C 0009                   NOP
+    0000018E              L343:                             
+    0000018E 0000                   .DATA.W     0
+    00000190 <00000000>             .DATA.L     _vec_buf
+    00000194 <00000000>             .DATA.L     _Bdisp_DrawLineVRAM
+    00000198 <00000000>             .DATA.L     _GetKey
+    0000019C <00000000>             .DATA.L     _key
+       bvfplay.c    97        }
+       bvfplay.c    98    
+       bvfplay.c    99        return 1;
+       bvfplay.c   100    }
+       bvfplay.c   101    
+       bvfplay.c   102    
+       bvfplay.c   103    
+       bvfplay.c   104    
+       bvfplay.c   105    //****************************************************************************
+       bvfplay.c   106    //**************                                              ****************
+       bvfplay.c   107    //**************                 Notice!                      ****************
+       bvfplay.c   108    //**************                                              ****************
+       bvfplay.c   109    //**************  Please do not change the following source.  ****************
+       bvfplay.c   110    //**************                                              ****************
+       bvfplay.c   111    //****************************************************************************
+       bvfplay.c   112    
+       bvfplay.c   113    
+       bvfplay.c   114    #pragma section _BR_Size
+       bvfplay.c   115    unsigned long BR_Size;
+       bvfplay.c   116    #pragma section
+       bvfplay.c   117    
+       bvfplay.c   118    
+       bvfplay.c   119    #pragma section _TOP
+       bvfplay.c   120    
+       bvfplay.c   121    //****************************************************************************
+       bvfplay.c   122    //  InitializeSystem
+       bvfplay.c   123    //
+       bvfplay.c   124    //  param   :   isAppli   : 1 = Application / 0 = eActivity
+       bvfplay.c   125    //              OptionNum : Option Number (only eActivity)
+       bvfplay.c   126    //
+       bvfplay.c   127    //  retval  :   1 = No error / 0 = Error
+       bvfplay.c   128    //
+       bvfplay.c   129    //****************************************************************************
+       bvfplay.c   130    int InitializeSystem(int isAppli, unsigned short OptionNum)
+P_T 00000000              _InitializeSystem:               ; function: InitializeSystem
+                                                           ; frame size=0
+       bvfplay.c   131    {
+       bvfplay.c   132        return INIT_ADDIN_APPLICATION(isAppli, OptionNum);
+    00000000 D301                   MOV.L       L344+2,R3  ; _INIT_ADDIN_APPLICATION
+    00000002 432B                   JMP         @R3
+    00000004 0009                   NOP
+    00000006              L344:                             
+    00000006 0000                   .DATA.W     0
+    00000008 <00000000>             .DATA.L     _INIT_ADDIN_APPLICATION
+       bvfplay.c   133    }
+       bvfplay.c   134    
+       bvfplay.c   135    #pragma section
+       bvfplay.c   136    
+D   00000000              _filename:                       ; static: filename
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    7
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000000 005C005C00             .DATA.W     H'005C,H'005C,H'0063,H'0072,H'0064,H'0030,H'005C,H'006F,H'0075,H'0074,H'0070,H'0075,
+             6300720064 +                       H'0074,H'002E,H'0062,H'0076,H'0066,H'0000
+             0030005C00   
+             6F00750074   
+             0070007500   
+             74002E0062   
+             0076006600   
+             00           
+    00000024              _line_index:                     ; static: line_index
+    00000024 00000000               .DATA.L     H'00000000
+    00000028              _frame_index:                    ; static: frame_index
+    00000028 00000000               .DATA.L     H'00000000
+    0000002C              _frame_vector_count:             ; static: frame_vector_count
+    0000002C 00000000               .DATA.L     H'00000000
+B   00000000              _key:                            ; static: key
+    00000000 00000004               .RES.L      1
+    00000004              _file:                           ; static: file
+    00000004 00000004               .RES.L      1
+    00000008              _md_buf:                         ; static: md_buf
+    00000008 00000007               .RES.B      7
+    0000000F              _byte:                           ; static: byte
+    0000000F 00000001               .RES.B      1
+    00000010              _vec_buf:                        ; static: vec_buf
+    00000010 000003FC               .RES.B      1020
+    0000040C              _bytes_read:                     ; static: bytes_read
+    0000040C 00000004               .RES.L      1
+    00000410              _m_frame_rate:                   ; static: m_frame_rate
+    00000410 00000004               .RES.L      1
+    00000414              _m_frame_count:                  ; static: m_frame_count
+    00000414 00000004               .RES.L      1
+    00000418              _m_horizontal_resolution:        ; static: m_horizontal_resolution
+    00000418 00000004               .RES.L      1
+    0000041C              _m_vertical_resolution:          ; static: m_vertical_resolution
+    0000041C 00000004               .RES.L      1
+    00000420              _start:                          ; static: start
+    00000420 00000004               .RES.L      1
+    00000424              _end:                            ; static: end
+    00000424 00000004               .RES.L      1
+    00000428              _num_vectors:                    ; static: num_vectors
+    00000428 00000004               .RES.L      1
+    0000042C              _i:                              ; static: i
+    0000042C 00000004               .RES.L      1
+    00000430              _frame_delay:                    ; static: frame_delay
+    00000430 00000004               .RES.L      1
+B_B 00000000              _BR_Size:                        ; static: BR_Size
+    00000000 00000004               .RES.L      1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    1
+
+
+******** STATISTICS INFORMATION ********
+
+
+********** ERROR INFORMATION ***********
+
+NUMBER OF ERRORS:           0
+NUMBER OF WARNINGS:         0
+
+
+
+
+******* SOURCE LINE INFORMATION ********
+
+COMPILED SOURCE LINE:      136
+
+
+
+******* SECTION SIZE INFORMATION *******
+
+PROGRAM  SECTION (P):                               000001A0 Byte(s)
+PROGRAM  SECTION (P_BR_Size):                       00000000 Byte(s)
+PROGRAM  SECTION (P_TOP):                           0000000C Byte(s)
+CONSTANT SECTION (C):                               00000000 Byte(s)
+CONSTANT SECTION (C_BR_Size):                       00000000 Byte(s)
+CONSTANT SECTION (C_TOP):                           00000000 Byte(s)
+DATA     SECTION (D):                               00000030 Byte(s)
+DATA     SECTION (D_BR_Size):                       00000000 Byte(s)
+DATA     SECTION (D_TOP):                           00000000 Byte(s)
+BSS      SECTION (B):                               00000434 Byte(s)
+BSS      SECTION (B_BR_Size):                       00000004 Byte(s)
+BSS      SECTION (B_TOP):                           00000000 Byte(s)
+
+ TOTAL PROGRAM SIZE: 00000614 Byte(s)
+
+
+
+********** LABEL INFORMATION ***********
+
+NUMBER OF EXTERNAL REFERENCE SYMBOLS:           11
+NUMBER OF EXTERNAL DEFINITION SYMBOLS:          22
+NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            43
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** COMMAND PARAMETER ***
+
+
+  -subcommand=C:\Users\NATHAN~1\AppData\Local\Temp\hmk426F.tmp 
+
