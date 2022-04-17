@@ -1,6 +1,6 @@
 # bvf_play
 
-Add-In for the Casio fx-9860GII to play BVF video files.
+Add-In for the Casio fx-9860GII to play [BVF](https://github.com/kizza7984/bvf_encode) video files.
 
 ![Rick Astley](pics/pic1.png)
 ![Bad Apple](pics/pic2.png)
