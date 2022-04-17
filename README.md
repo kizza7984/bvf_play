@@ -9,4 +9,4 @@ Images are from the SDK emulator but it works the same on the real device.
 
 ## Installation
 
-Download the Add-In file `BVFPLAY.G1A` from the Releases and install it. The easiest way to do this is to connect the calculator as a storage device via USB cable, then place the file in the root directory of the storage memory.
+Download the Add-In file `BVFPLAY.G1A` from the [Releases](https://github.com/kizza7984/bvf_play/releases) and install it. The easiest way to do this is to connect the calculator as a storage device via USB cable, then place the file in the root directory of the storage memory.
