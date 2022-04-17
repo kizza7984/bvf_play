@@ -22,7 +22,7 @@
 //  retval  :   1 = No error / 0 = Error
 //
 //****************************************************************************
-FONTCHARACTER filename[] = {'\\','\\','c','r','d','0','\\','o','u','t','p','u','t','.','b','v','f',0}; // Filename SET TO FLS FOR PROD
+FONTCHARACTER filename[] = {'\\','\\','f','l','s','0','\\','o','u','t','p','u','t','.','b','v','f',0}; // Filename SET TO FLS FOR PROD, crd for debug
 
 unsigned int key; // Keypad key pressed
 

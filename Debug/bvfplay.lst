@@ -1,4 +1,4 @@
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    1
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:21:08  PAGE    1
 
 ************ OBJECT LISTING ************
 
@@ -30,8 +30,8 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
        bvfplay.c    22    //  retval  :   1 = No error / 0 = Error
        bvfplay.c    23    //
        bvfplay.c    24    //****************************************************************************
-       bvfplay.c    25    FONTCHARACTER filename[] = {'\\','\\','c','r','d','0','\\','o','u','t','p','u','t','.','b','v','f',0}; // 
-                         +Filename SET TO FLS FOR PROD
+       bvfplay.c    25    FONTCHARACTER filename[] = {'\\','\\','f','l','s','0','\\','o','u','t','p','u','t','.','b','v','f',0}; // 
+                         +Filename SET TO FLS FOR PROD, crd for debug
        bvfplay.c    26    
        bvfplay.c    27    unsigned int key; // Keypad key pressed
        bvfplay.c    28    
@@ -64,7 +64,7 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    2
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:21:08  PAGE    2
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
@@ -130,7 +130,7 @@ P   00000000              _AddIn_main:                     ; function: AddIn_mai
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    3
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:21:08  PAGE    3
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
@@ -196,7 +196,7 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    4
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:21:08  PAGE    4
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
@@ -262,7 +262,7 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    5
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:21:08  PAGE    5
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
@@ -328,7 +328,7 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    6
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:21:08  PAGE    6
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
@@ -394,13 +394,13 @@ D   00000000              _filename:                       ; static: filename
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    7
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:21:08  PAGE    7
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    00000000 005C005C00             .DATA.W     H'005C,H'005C,H'0063,H'0072,H'0064,H'0030,H'005C,H'006F,H'0075,H'0074,H'0070,H'0075,
-             6300720064 +                       H'0074,H'002E,H'0062,H'0076,H'0066,H'0000
+    00000000 005C005C00             .DATA.W     H'005C,H'005C,H'0066,H'006C,H'0073,H'0030,H'005C,H'006F,H'0075,H'0074,H'0070,H'0075,
+             66006C0073 +                       H'0074,H'002E,H'0062,H'0076,H'0066,H'0000
              0030005C00   
              6F00750074   
              0070007500   
@@ -460,7 +460,7 @@ B_B 00000000              _BR_Size:                        ; static: BR_Size
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:01:19  PAGE    1
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 17-Apr-2022 01:21:08  PAGE    1
 
 
 ******** STATISTICS INFORMATION ********
@@ -529,5 +529,5 @@ NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            43
 *** COMMAND PARAMETER ***
 
 
-  -subcommand=C:\Users\NATHAN~1\AppData\Local\Temp\hmk426F.tmp 
+  -subcommand=C:\Users\NATHAN~1\AppData\Local\Temp\hmk67C3.tmp 
 
